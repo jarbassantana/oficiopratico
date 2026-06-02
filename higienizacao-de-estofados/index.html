@@ -413,7 +413,7 @@
       .hero {
         position: relative;
         overflow: hidden;
-        background-image: url('hero-bg.png');
+        background-image: url('./images/hero-bg.png');
         background-size: cover;
         background-position: center right;
         background-repeat: no-repeat;
@@ -838,28 +838,96 @@
       /* ============================================================
        13. ANTES E DEPOIS
        ============================================================ */
+      .before-after-section {
+        overflow: hidden;
+      }
+      .before-after-section::before {
+        content: '';
+        position: absolute;
+        top: 28%;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(34, 211, 238, 0.24),
+          transparent
+        );
+      }
       .ba-grid {
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: var(--s-5);
-        max-width: 900px;
+        max-width: 1040px;
         margin: 0 auto;
+        perspective: 1200px;
       }
       .ba-card {
-        aspect-ratio: 4 / 3;
+        aspect-ratio: 1 / 1;
         border-radius: var(--r-lg);
         border: 1px solid var(--c-border);
-        display: flex;
-        align-items: center;
-        justify-content: center;
         position: relative;
         overflow: hidden;
+        background: #0d0f16;
+        box-shadow: var(--shadow-md);
+        isolation: isolate;
+        transform-origin: center bottom;
+        transition:
+          border-color 0.25s ease,
+          box-shadow 0.25s ease,
+          transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
       }
-      .ba-card.before {
-        background: linear-gradient(160deg, #2a3140 0%, #1b2030 100%);
+      .ba-card::before,
+      .ba-card::after {
+        content: '';
+        position: absolute;
+        pointer-events: none;
+        z-index: 1;
       }
-      .ba-card.after {
-        background: linear-gradient(160deg, #123945 0%, #0e2a3a 100%);
+      .ba-card::before {
+        inset: 0;
+        background:
+          linear-gradient(to top, rgba(10, 11, 16, 0.78), transparent 42%),
+          linear-gradient(135deg, rgba(255, 255, 255, 0.14), transparent 32%);
+        opacity: 0.9;
+      }
+      .ba-card::after {
+        inset: -40% -80%;
+        background: linear-gradient(
+          115deg,
+          transparent 42%,
+          rgba(255, 255, 255, 0.22) 50%,
+          transparent 58%
+        );
+        transform: translateX(-55%) rotate(8deg);
+        opacity: 0;
+      }
+      .ba-card:hover {
+        border-color: var(--c-border-strong);
+        box-shadow: 0 28px 70px -24px rgba(0, 0, 0, 0.9);
+        transform: translateY(-6px);
+      }
+      .ba-card:hover::after {
+        animation: baSheen 1s ease;
+      }
+      .ba-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transition:
+          filter 0.45s ease,
+          transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .ba-card.before .ba-img {
+        filter: brightness(0.86) contrast(1.04) saturate(0.82);
+      }
+      .ba-card.after .ba-img {
+        filter: brightness(1.04) contrast(1.02) saturate(1.08);
+      }
+      .ba-card:hover .ba-img {
+        transform: scale(1.045);
       }
       .ba-tag {
         position: absolute;
@@ -872,21 +940,81 @@
         padding: 5px 14px;
         border-radius: var(--r-pill);
         color: #051018;
+        z-index: 2;
+        backdrop-filter: blur(6px);
+        box-shadow: 0 12px 30px -16px rgba(0, 0, 0, 0.8);
       }
       .ba-card.before .ba-tag {
-        background: #64748b;
+        background: rgba(100, 116, 139, 0.9);
         color: #fff;
       }
       .ba-card.after .ba-tag {
         background: var(--grad);
       }
-      .ba-card .ph-label {
-        font-size: 12px;
-        letter-spacing: 0.06em;
-        text-transform: uppercase;
-        color: rgba(255, 255, 255, 0.35);
+      .ba-caption {
+        position: absolute;
+        left: 18px;
+        right: 18px;
+        bottom: 16px;
+        z-index: 2;
+        color: rgba(255, 255, 255, 0.88);
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 1.45;
+        text-shadow: 0 2px 18px rgba(0, 0, 0, 0.72);
       }
-
+      .ba-grid.reveal .ba-card {
+        opacity: 0;
+        transform: translateY(30px) rotateX(4deg) scale(0.98);
+      }
+      .ba-grid.visible .ba-card {
+        opacity: 1;
+        transform: none;
+        transition:
+          opacity 0.58s ease,
+          border-color 0.25s ease,
+          box-shadow 0.25s ease,
+          transform 0.62s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .ba-grid.visible .ba-card.after {
+        transition-delay: 0.12s;
+      }
+      /* --- Animações de reveal por scroll --- */
+      @keyframes fadeSlideUp {
+        from { opacity: 0; transform: translateY(28px); }
+        to   { opacity: 1; transform: translateY(0); }
+      }
+      @keyframes fadeIn {
+        from { opacity: 0; }
+        to   { opacity: 1; }
+      }
+      @keyframes baSheen {
+        from { opacity: 0; transform: translateX(-55%) rotate(8deg); }
+        35%  { opacity: 1; }
+        to   { opacity: 0; transform: translateX(55%) rotate(8deg); }
+      }
+      .reveal {
+        opacity: 0;
+      }
+      .reveal.visible {
+        animation: fadeSlideUp 0.55s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      }
+      .reveal-fade {
+        opacity: 0;
+      }
+      .reveal-fade.visible {
+        animation: fadeIn 0.6s ease forwards;
+      }
+      /* stagger para filhos diretos */
+      .reveal-stagger > * {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.45s ease, transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .reveal-stagger.visible > *:nth-child(1) { transition-delay: 0.05s; opacity: 1; transform: none; }
+      .reveal-stagger.visible > *:nth-child(2) { transition-delay: 0.15s; opacity: 1; transform: none; }
+      .reveal-stagger.visible > *:nth-child(3) { transition-delay: 0.25s; opacity: 1; transform: none; }
+      .reveal-stagger.visible > *:nth-child(4) { transition-delay: 0.35s; opacity: 1; transform: none; }
       /* ============================================================
        14. BÔNUS
        ============================================================ */
@@ -1184,6 +1312,9 @@
         .ba-grid {
           grid-template-columns: 1fr;
         }
+        .ba-caption {
+          font-size: 13px;
+        }
         .feature-strip {
           padding: var(--s-6) var(--s-5);
         }
@@ -1191,6 +1322,23 @@
           flex-direction: column;
           text-align: center;
           padding: var(--s-6) var(--s-5);
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          scroll-behavior: auto !important;
+          transition-duration: 0.01ms !important;
+        }
+        .reveal,
+        .reveal-fade,
+        .reveal-stagger > *,
+        .ba-grid.reveal .ba-card {
+          opacity: 1;
+          transform: none;
         }
       }
     </style>
@@ -1303,7 +1451,7 @@
     <section class="section" style="padding-top: 0">
       <div class="container">
         <div class="glass feature-strip">
-          <div class="features-grid">
+          <div class="features-grid reveal-stagger">
             <div class="feature-card">
               <div class="feature-icon">
                 <svg
@@ -1395,7 +1543,7 @@
     <!-- 9. VÍDEO -->
     <section class="section">
       <div class="container">
-        <div class="section-head">
+        <div class="section-head reveal-fade">
           <span class="eyebrow">Conheça o guia</span>
           <h2 class="section-title">
             Entenda o que você vai aprender — e se esse guia é pra você
@@ -1421,7 +1569,7 @@
     <!-- 10. PRICING -->
     <section class="section" id="comprar">
       <div class="container">
-        <div class="section-head">
+        <div class="section-head reveal-fade">
           <span class="eyebrow">Oferta de lançamento</span>
           <h2 class="section-title">
             Tudo o que você precisa pra começar — por menos que um lanche
@@ -1549,7 +1697,7 @@
     <!-- 11. CURRÍCULO -->
     <section class="section">
       <div class="container">
-        <div class="section-head">
+        <div class="section-head reveal-fade">
           <span class="eyebrow">O que tem dentro</span>
           <h2 class="section-title">O conteúdo do guia, módulo a módulo</h2>
           <p class="section-subtitle">
@@ -1557,7 +1705,7 @@
             ordem em que ela aparece no dia a dia do serviço.
           </p>
         </div>
-        <div class="curriculum-grid">
+        <div class="curriculum-grid reveal-stagger">
           <div class="glass module-card">
             <span class="module-card__num">01</span>
             <h3 class="module-card__title">Avaliando o estofado</h3>
@@ -1619,7 +1767,7 @@
     <!-- 12. STATS -->
     <section class="section" style="padding-top: 0">
       <div class="container">
-        <div class="stats-grid">
+        <div class="stats-grid reveal-stagger">
           <div>
             <div class="stat-value grad-text">6</div>
             <div class="stat-label">Módulos práticos</div>
@@ -1637,9 +1785,9 @@
     </section>
 
     <!-- 13. ANTES E DEPOIS -->
-    <section class="section" style="padding-top: 0">
+    <section class="section before-after-section" id="antes-depois" style="padding-top: 0">
       <div class="container">
-        <div class="section-head">
+        <div class="section-head reveal-fade">
           <span class="eyebrow">Resultado na prática</span>
           <h2 class="section-title">
             A diferença que um serviço bem feito faz
@@ -1649,16 +1797,33 @@
             — e é isso que faz o cliente indicar você para o vizinho.
           </p>
         </div>
-        <!-- Substitua pelos seus registros reais de antes/depois -->
-        <div class="ba-grid">
-          <div class="ba-card before">
-            <span class="ba-tag">Antes</span
-            ><span class="ph-label">Foto "antes" (substituir)</span>
-          </div>
-          <div class="ba-card after">
-            <span class="ba-tag">Depois</span
-            ><span class="ph-label">Foto "depois" (substituir)</span>
-          </div>
+        <div class="ba-grid reveal" aria-label="Comparação real de antes e depois da higienização">
+          <figure class="ba-card before">
+            <img
+              src="./images/antes.png"
+              alt="Sofá bege com manchas antes da higienização profissional"
+              class="ba-img"
+              width="1254"
+              height="1254"
+              loading="lazy"
+              decoding="async"
+            />
+            <span class="ba-tag">Antes</span>
+            <figcaption class="ba-caption">Manchas visíveis no assento, encosto e almofadas.</figcaption>
+          </figure>
+          <figure class="ba-card after">
+            <img
+              src="./images/depois.png"
+              alt="Sofá bege limpo depois da higienização profissional"
+              class="ba-img"
+              width="1254"
+              height="1254"
+              loading="lazy"
+              decoding="async"
+            />
+            <span class="ba-tag">Depois</span>
+            <figcaption class="ba-caption">Tecido claro, uniforme e pronto para uso novamente.</figcaption>
+          </figure>
         </div>
       </div>
     </section>
@@ -1666,7 +1831,7 @@
     <!-- 14. BÔNUS -->
     <section class="section">
       <div class="container">
-        <div class="section-head">
+        <div class="section-head reveal-fade">
           <span class="eyebrow">Acesso especial</span>
           <h2 class="section-title">
             Você ainda leva 2 bônus para acelerar o primeiro serviço
@@ -1761,7 +1926,7 @@
     <!-- 16. FAQ -->
     <section class="section">
       <div class="container">
-        <div class="section-head">
+        <div class="section-head reveal-fade">
           <span class="eyebrow">Dúvidas frequentes</span>
           <h2 class="section-title">
             Antes de começar, talvez você esteja pensando...
@@ -1949,23 +2114,56 @@
     </footer>
 
     <script>
-      document.querySelectorAll('.faq-q').forEach(function (btn) {
-        btn.addEventListener('click', function () {
-          var item = btn.parentElement;
-          var answer = item.querySelector('.faq-a');
-          var isOpen = item.classList.contains('open');
-          document.querySelectorAll('.faq-item').forEach(function (other) {
-            other.classList.remove('open');
-            other.querySelector('.faq-a').style.maxHeight = null;
-            other
-              .querySelector('.faq-q')
-              .setAttribute('aria-expanded', 'false');
-          });
-          if (!isOpen) {
-            item.classList.add('open');
-            answer.style.maxHeight = answer.scrollHeight + 'px';
-            btn.setAttribute('aria-expanded', 'true');
-          }
+      const revealElements = document.querySelectorAll(
+        '.reveal, .reveal-fade, .reveal-stagger',
+      );
+
+      function showRevealElement(element) {
+        element.classList.add('visible');
+      }
+
+      if ('IntersectionObserver' in window) {
+        const revealObserver = new IntersectionObserver(
+          function (entries, observer) {
+            entries.forEach(function (entry) {
+              if (!entry.isIntersecting) return;
+              showRevealElement(entry.target);
+              observer.unobserve(entry.target);
+            });
+          },
+          { rootMargin: '0px 0px -80px 0px', threshold: 0.16 },
+        );
+
+        revealElements.forEach(function (element) {
+          revealObserver.observe(element);
+        });
+      } else {
+        revealElements.forEach(showRevealElement);
+      }
+
+      function closeFaqItem(item) {
+        const answer = item.querySelector('.faq-a');
+        const button = item.querySelector('.faq-q');
+        item.classList.remove('open');
+        if (answer) answer.style.maxHeight = null;
+        if (button) button.setAttribute('aria-expanded', 'false');
+      }
+
+      document.querySelectorAll('.faq-item').forEach(function (item) {
+        const button = item.querySelector('.faq-q');
+        const answer = item.querySelector('.faq-a');
+        if (!button || !answer) return;
+
+        button.addEventListener('click', function () {
+          const isOpen = item.classList.contains('open');
+
+          document.querySelectorAll('.faq-item').forEach(closeFaqItem);
+
+          if (isOpen) return;
+
+          item.classList.add('open');
+          answer.style.maxHeight = answer.scrollHeight + 'px';
+          button.setAttribute('aria-expanded', 'true');
         });
       });
     </script>
