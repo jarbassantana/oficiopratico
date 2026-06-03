@@ -285,12 +285,10 @@
       const visible = heroBottom < 0;
       this.el.classList.toggle('sticky-cta--visible', visible);
 
-      // Empurra o contador e o toast para cima da sticky CTA
+      // Empurra o toast para cima da sticky CTA
       const ctaHeight = this.el.offsetHeight;
       const offset = visible ? ctaHeight + 12 + 'px' : '20px';
-      const onlineEl = document.getElementById('sp-online');
       const toastEl = document.getElementById('sp-toast');
-      if (onlineEl) onlineEl.style.bottom = offset;
       if (toastEl) toastEl.style.bottom = `calc(${offset} + 60px)`;
     },
   };

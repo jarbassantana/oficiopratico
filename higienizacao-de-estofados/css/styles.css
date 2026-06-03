@@ -1384,8 +1384,8 @@ html:not(.js-on) body > *:not(noscript) { visibility: hidden; }
 
 /* Contador de pessoas online */
 #sp-online {
-  position: fixed; bottom: 20px; left: 20px; z-index: 9000;
-  transition: bottom 0.3s ease;
+  position: fixed; top: 72px; right: 24px; bottom: auto; left: auto; z-index: 9000;
+  transition: top 0.3s ease;
   display: inline-flex; align-items: center; gap: 8px;
   background: rgba(20,22,31,0.95);
   border: 1px solid var(--c-border);
@@ -1455,7 +1455,7 @@ html:not(.js-on) body > *:not(noscript) { visibility: hidden; }
   .sticky-cta-text span { font-size: 12px; }
   .sticky-cta-btn { font-size: 13px; padding: 10px 18px; }
   #sp-toast { max-width: calc(100vw - 40px); }
-  #sp-online { bottom: 20px; left: 12px; font-size: 12px; padding: 6px 12px; }
+  #sp-online { top: 60px; right: 12px; bottom: auto; left: auto; font-size: 12px; padding: 6px 12px; }
 }
 @media (max-width: 480px) {
   .hero h1 { font-size: 2rem; }
