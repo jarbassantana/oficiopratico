@@ -290,7 +290,7 @@
       .hero {
         position: relative;
         overflow: hidden;
-        background-image: url('./images/hero-bg.png');
+        background-image: url('../images/hero-bg.png');
         background-size: cover;
         background-position: center right;
         background-repeat: no-repeat;

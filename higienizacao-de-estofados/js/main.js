@@ -159,7 +159,7 @@
       ['Bruno Q.',    'Campo Grande', 'MS', 29],
     ],
     times: ['agora mesmo', 'há 1 min', 'há 2 min', 'há 5 min', 'há 8 min', 'há 12 min', 'há 18 min', 'há 35 min'],
-    productName: 'Guia de Higienização de Estofados',
+    productName: 'Higienização de Sofás do Zero',
     onlineCount: 0,
     toast: null,
     counter: null,
@@ -265,7 +265,7 @@
       this.el.innerHTML = `
         <div class="sticky-cta-inner">
           <div class="sticky-cta-text">
-            <strong>Guia de Higienização</strong>
+            <strong>Higienização de Sofás do Zero</strong>
             <span>De <s>R$ 97</s> por <strong class="sticky-price">R$ 19,90</strong></span>
           </div>
           <a href="https://pay.kiwify.com.br/AALp7LS" target="_blank" rel="noopener" class="sticky-cta-btn">
