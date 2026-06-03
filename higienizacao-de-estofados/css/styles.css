@@ -69,6 +69,7 @@
         padding: 0;
       }
       html {
+        font-size: 16px;
         scroll-behavior: smooth;
         -webkit-text-size-adjust: 100%;
         overflow-x: hidden;
@@ -174,7 +175,7 @@
         font-weight: 700;
         line-height: 1.1;
         letter-spacing: -0.02em;
-        font-size: clamp(28px, 3vw, 40px);
+        font-size: 2rem;
         margin-bottom: var(--s-4);
       }
       .section-subtitle {
@@ -354,7 +355,7 @@
       .hero h1 {
         font-family: var(--font-display);
         font-weight: 700;
-        font-size: clamp(34px, 4.2vw, 52px);
+        font-size: 2.625rem;
         line-height: 1.05;
         letter-spacing: -0.025em;
         color: var(--c-text);
@@ -556,22 +557,22 @@
       }
       .pricing-now-row .symbol {
         font-family: var(--font-display);
-        font-size: 30px;
+        font-size: 1.5rem;
         font-weight: 700;
-        margin-top: 14px;
+        margin-top: 10px;
       }
       .pricing-now {
         font-family: var(--font-display);
-        font-size: 84px;
+        font-size: 4rem;
         font-weight: 700;
         line-height: 1;
         letter-spacing: -0.03em;
       }
       .pricing-now-row .cents {
         font-family: var(--font-display);
-        font-size: 32px;
+        font-size: 1.5rem;
         font-weight: 700;
-        margin-top: 12px;
+        margin-top: 10px;
       }
       .pricing-meta {
         font-size: 13px;
@@ -701,7 +702,7 @@
       }
       .stat-value {
         font-family: var(--font-display);
-        font-size: 62px;
+        font-size: 3rem;
         font-weight: 700;
         line-height: 1;
       }
@@ -1086,7 +1087,7 @@
       .cta-final h2 {
         font-family: var(--font-display);
         font-weight: 700;
-        font-size: clamp(30px, 3.4vw, 44px);
+        font-size: 2.25rem;
         line-height: 1.08;
         letter-spacing: -0.025em;
         color: var(--c-text);
@@ -1195,7 +1196,7 @@
       }
       .qs-title {
         font-family: var(--font-display);
-        font-size: clamp(32px, 3.4vw, 46px);
+        font-size: 2.5rem;
         font-weight: 700;
         color: var(--c-text);
         letter-spacing: -0.02em;
@@ -1457,7 +1458,7 @@ html:not(.js-on) body > *:not(noscript) { visibility: hidden; }
   #sp-online { bottom: 20px; left: 12px; font-size: 12px; padding: 6px 12px; }
 }
 @media (max-width: 480px) {
-  .hero h1 { font-size: clamp(28px, 8vw, 44px); }
+  .hero h1 { font-size: 2rem; }
   .announcement { font-size: 11px; padding: 10px 12px; }
   .feature-strip { padding: var(--s-5) var(--s-4); margin-top: calc(-1 * var(--s-6)); }
   .pricing-card { padding: var(--s-6) var(--s-4); }
