@@ -49,11 +49,16 @@
     },
 
     detectDevTools() {
+      // Só ativa em desktop — mobile tem chrome/UI que dispara falso-positivo
+      const isMobile = /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent)
+        || window.matchMedia('(pointer: coarse)').matches;
+      if (isMobile) return;
+
       let devtoolsOpen = false;
-      const threshold = 160;
+      const threshold = 200; // margem generosa para evitar falsos positivos
 
       const check = () => {
-        const widthDiff = window.outerWidth - window.innerWidth > threshold;
+        const widthDiff  = window.outerWidth  - window.innerWidth  > threshold;
         const heightDiff = window.outerHeight - window.innerHeight > threshold;
         if ((widthDiff || heightDiff) && !devtoolsOpen) {
           devtoolsOpen = true;
@@ -66,7 +71,7 @@
         }
       };
 
-      setInterval(check, 1000);
+      setInterval(check, 1500);
     },
 
     enforceCanonical() {

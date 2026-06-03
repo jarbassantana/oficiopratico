@@ -71,6 +71,7 @@
       html {
         scroll-behavior: smooth;
         -webkit-text-size-adjust: 100%;
+        overflow-x: hidden;
       }
       body {
         font-family: var(--font-body);
@@ -79,6 +80,7 @@
         line-height: 1.5;
         -webkit-font-smoothing: antialiased;
         text-rendering: optimizeLegibility;
+        overflow-x: hidden;
       }
       img,
       svg {
@@ -1228,7 +1230,7 @@
        ============================================================ */
       @media (max-width: 1024px) {
         .hero-grid {
-          max-width: 520px;
+          max-width: 640px;
         }
         .hero::before {
           background: linear-gradient(
@@ -1310,7 +1312,7 @@
           padding: var(--s-6) var(--s-5);
           gap: var(--s-6);
         }
-        .qs-photo { aspect-ratio: 3 / 2; max-width: 100%; }
+        .qs-photo { aspect-ratio: 4 / 5; max-width: 340px; margin: 0 auto; }
         .qs-title { font-size: 36px; }
       }
       @media (prefers-reduced-motion: reduce) {
@@ -1349,11 +1351,10 @@ html:not(.js-on) body > *:not(noscript) { visibility: hidden; }
 
 /* Toast de prova social */
 #sp-toast {
-  position: fixed; bottom: 80px; left: 20px; z-index: 9000;
+  position: fixed; bottom: 80px; right: 20px; left: auto; z-index: 9000;
+  max-width: min(320px, calc(100vw - 40px));
+  transform: translateX(calc(100% + 24px));
   transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), bottom 0.3s ease;
-  max-width: 320px;
-  transform: translateX(calc(-100% - 24px));
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   pointer-events: none;
 }
 #sp-toast.sp-toast--visible {
@@ -1448,10 +1449,19 @@ html:not(.js-on) body > *:not(noscript) { visibility: hidden; }
 
 @media (max-width: 768px) {
   .sticky-cta-inner { padding: 12px 16px; }
-  .sticky-cta-text strong { font-size: 14px; }
-  .sticky-cta-btn { font-size: 14px; padding: 10px 20px; }
-  #sp-toast { max-width: 290px; }
-  #sp-online { bottom: 70px; }
+  .sticky-cta-text { gap: 1px; }
+  .sticky-cta-text strong { font-size: 13px; }
+  .sticky-cta-text span { font-size: 12px; }
+  .sticky-cta-btn { font-size: 13px; padding: 10px 18px; }
+  #sp-toast { max-width: calc(100vw - 40px); }
+  #sp-online { bottom: 20px; left: 12px; font-size: 12px; padding: 6px 12px; }
+}
+@media (max-width: 480px) {
+  .hero h1 { font-size: clamp(28px, 8vw, 44px); }
+  .announcement { font-size: 11px; padding: 10px 12px; }
+  .feature-strip { padding: var(--s-5) var(--s-4); margin-top: calc(-1 * var(--s-6)); }
+  .pricing-card { padding: var(--s-6) var(--s-4); }
+  .qs-card { padding: var(--s-5) var(--s-4); }
 }
 
 /* ============================================================
@@ -1531,3 +1541,24 @@ html:not(.js-on) body > *:not(noscript) { visibility: hidden; }
 }
 .testimonial-info span {
   font-size: 1
+
+/* Testimonials responsivo */
+@media (max-width: 1024px) {
+  .testimonials-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .testimonial-card--featured {
+    grid-column: span 2;
+  }
+}
+@media (max-width: 640px) {
+  .testimonials-grid {
+    grid-template-columns: 1fr;
+  }
+  .testimonial-card--featured {
+    grid-column: span 1;
+  }
+  .testimonial-card {
+    padding: var(--s-5);
+  }
+}
