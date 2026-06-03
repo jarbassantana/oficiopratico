@@ -140,19 +140,26 @@
      5. PROVA SOCIAL — notificações de compra + contador online
      ────────────────────────────────────────────────────────────── */
   const SocialProof = {
-    names: [
-      'Maria S.', 'João C.', 'Ana P.', 'Carlos M.', 'Fernanda L.',
-      'Roberto A.', 'Juliana T.', 'Marcos V.', 'Patrícia G.', 'Ricardo N.',
-      'Camila O.', 'Lucas B.', 'Vanessa R.', 'Felipe K.', 'Daniela W.',
-      'Anderson H.', 'Beatriz F.', 'Thiago I.', 'Larissa J.', 'Bruno Q.',
+    // Cada entrada: [nome, cidade, estado, foto-id-pravatar]
+    buyers: [
+      ['Anderson S.', 'Manaus', 'AM', 11],
+      ['Maria F.',    'São Paulo', 'SP', 47],
+      ['João C.',     'Fortaleza', 'CE', 15],
+      ['Carla M.',    'Belo Horizonte', 'MG', 26],
+      ['Roberto A.',  'Salvador', 'BA', 8],
+      ['Juliana T.',  'Curitiba', 'PR', 33],
+      ['Marcos V.',   'Recife', 'PE', 18],
+      ['Patrícia G.', 'Porto Alegre', 'RS', 56],
+      ['Ricardo N.',  'Goiânia', 'GO', 12],
+      ['Beatriz F.',  'Belém', 'PA', 44],
+      ['Thiago I.',   'Campinas', 'SP', 22],
+      ['Larissa J.',  'São Luís', 'MA', 38],
+      ['Felipe K.',   'Natal', 'RN', 5],
+      ['Vanessa R.',  'Maceió', 'AL', 62],
+      ['Bruno Q.',    'Campo Grande', 'MS', 29],
     ],
-    cities: [
-      'São Paulo', 'Rio de Janeiro', 'Belo Horizonte', 'Salvador', 'Fortaleza',
-      'Curitiba', 'Manaus', 'Recife', 'Porto Alegre', 'Goiânia',
-      'Belém', 'Guarulhos', 'Campinas', 'São Luís', 'Maceió',
-      'Natal', 'Teresina', 'Campo Grande', 'João Pessoa', 'Osasco',
-    ],
-    times: ['agora mesmo', 'há 1 min', 'há 3 min', 'há 5 min', 'há 8 min', 'há 12 min'],
+    times: ['agora mesmo', 'há 1 min', 'há 2 min', 'há 5 min', 'há 8 min', 'há 12 min', 'há 18 min', 'há 35 min'],
+    productName: 'Guia de Higienização de Estofados',
     onlineCount: 0,
     toast: null,
     counter: null,
@@ -204,18 +211,23 @@
     },
 
     showNotification() {
-      const name = this.pick(this.names);
-      const city = this.pick(this.cities);
+      const buyer = this.pick(this.buyers); // [nome, cidade, estado, fotoId]
+      const [name, city, state, photoId] = buyer;
       const time = this.pick(this.times);
 
       this.toast.innerHTML = `
         <div class="sp-toast-inner">
-          <div class="sp-avatar">${name[0]}</div>
+          <img
+            src="https://i.pravatar.cc/48?img=${photoId}"
+            alt="${name}"
+            class="sp-photo"
+            loading="lazy"
+          />
           <div class="sp-info">
-            <strong>${name}</strong> de ${city}
-            <span>comprou o guia <em>${time}</em></span>
+            <p class="sp-name"><strong>${name}</strong> comprou ${this.productName}</p>
+            <p class="sp-meta">${city}, ${state} • <em>${time}</em></p>
           </div>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+          <svg class="sp-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
         </div>`;
 
       this.toast.classList.add('sp-toast--visible');
@@ -270,11 +282,16 @@
     update() {
       if (!this.heroEl) return;
       const heroBottom = this.heroEl.getBoundingClientRect().bottom;
-      if (heroBottom < 0) {
-        this.el.classList.add('sticky-cta--visible');
-      } else {
-        this.el.classList.remove('sticky-cta--visible');
-      }
+      const visible = heroBottom < 0;
+      this.el.classList.toggle('sticky-cta--visible', visible);
+
+      // Empurra o contador e o toast para cima da sticky CTA
+      const ctaHeight = this.el.offsetHeight;
+      const offset = visible ? ctaHeight + 12 + 'px' : '20px';
+      const onlineEl = document.getElementById('sp-online');
+      const toastEl  = document.getElementById('sp-toast');
+      if (onlineEl) onlineEl.style.bottom = offset;
+      if (toastEl)  toastEl.style.bottom  = `calc(${offset} + 60px)`;
     },
   };
 
