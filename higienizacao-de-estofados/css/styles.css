@@ -174,11 +174,11 @@
         font-weight: 700;
         line-height: 1.1;
         letter-spacing: -0.02em;
-        font-size: clamp(30px, 3.8vw, 46px);
+        font-size: clamp(28px, 3vw, 40px);
         margin-bottom: var(--s-4);
       }
       .section-subtitle {
-        font-size: 17px;
+        font-size: 16px;
         line-height: 1.7;
         max-width: 600px;
         color: var(--c-muted);
@@ -205,7 +205,7 @@
         justify-content: center;
         gap: var(--s-3);
         font-family: var(--font-body);
-        font-size: 17px;
+        font-size: 16px;
         font-weight: 700;
         letter-spacing: 0.01em;
         text-decoration: none;
@@ -240,7 +240,7 @@
         transform: scale(0.985);
       }
       .btn--lg {
-        font-size: 20px;
+        font-size: 18px;
         padding: 21px 48px;
       }
 
@@ -354,13 +354,13 @@
       .hero h1 {
         font-family: var(--font-display);
         font-weight: 700;
-        font-size: clamp(38px, 5vw, 62px);
+        font-size: clamp(34px, 4.2vw, 52px);
         line-height: 1.05;
         letter-spacing: -0.025em;
         color: var(--c-text);
       }
       .hero-subtitle {
-        font-size: 18px;
+        font-size: 16px;
         line-height: 1.65;
         color: var(--c-muted);
         margin-top: var(--s-5);
@@ -1086,7 +1086,7 @@
       .cta-final h2 {
         font-family: var(--font-display);
         font-weight: 700;
-        font-size: clamp(32px, 4.2vw, 50px);
+        font-size: clamp(30px, 3.4vw, 44px);
         line-height: 1.08;
         letter-spacing: -0.025em;
         color: var(--c-text);
@@ -1094,7 +1094,7 @@
       }
       .cta-final p {
         color: var(--c-muted);
-        font-size: 18px;
+        font-size: 16px;
         max-width: 540px;
         margin: 0 auto var(--s-6);
         line-height: 1.6;
@@ -1195,7 +1195,7 @@
       }
       .qs-title {
         font-family: var(--font-display);
-        font-size: clamp(36px, 4vw, 56px);
+        font-size: clamp(32px, 3.4vw, 46px);
         font-weight: 700;
         color: var(--c-text);
         letter-spacing: -0.02em;

@@ -20,7 +20,6 @@
       this.blockRightClick();
       this.blockKeyboardShortcuts();
       this.blockDragSelect();
-      this.detectDevTools();
       this.enforceCanonical();
     },
 
@@ -62,12 +61,8 @@
         const heightDiff = window.outerHeight - window.innerHeight > threshold;
         if ((widthDiff || heightDiff) && !devtoolsOpen) {
           devtoolsOpen = true;
-          document.body.style.filter = 'blur(8px)';
-          document.body.style.pointerEvents = 'none';
         } else if (!widthDiff && !heightDiff && devtoolsOpen) {
           devtoolsOpen = false;
-          document.body.style.filter = '';
-          document.body.style.pointerEvents = '';
         }
       };
 
