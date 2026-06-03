@@ -1540,7 +1540,9 @@ html:not(.js-on) body > *:not(noscript) { visibility: hidden; }
   color: var(--c-text);
 }
 .testimonial-info span {
-  font-size: 1
+  font-size: 12px;
+  color: var(--c-dim);
+}
 
 /* Testimonials responsivo */
 @media (max-width: 1024px) {

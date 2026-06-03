@@ -58,7 +58,7 @@
       const threshold = 200; // margem generosa para evitar falsos positivos
 
       const check = () => {
-        const widthDiff  = window.outerWidth  - window.innerWidth  > threshold;
+        const widthDiff = window.outerWidth - window.innerWidth > threshold;
         const heightDiff = window.outerHeight - window.innerHeight > threshold;
         if ((widthDiff || heightDiff) && !devtoolsOpen) {
           devtoolsOpen = true;
@@ -135,7 +135,7 @@
             bar.appendChild(geoSpan);
           }
         })
-        .catch(() => {}); // Falha silenciosa
+        .catch(() => { }); // Falha silenciosa
     },
   };
 
@@ -148,20 +148,20 @@
     // Cada entrada: [nome, cidade, estado, foto-id-pravatar]
     buyers: [
       ['Anderson S.', 'Manaus', 'AM', 11],
-      ['Maria F.',    'São Paulo', 'SP', 47],
-      ['João C.',     'Fortaleza', 'CE', 15],
-      ['Carla M.',    'Belo Horizonte', 'MG', 26],
-      ['Roberto A.',  'Salvador', 'BA', 8],
-      ['Juliana T.',  'Curitiba', 'PR', 33],
-      ['Marcos V.',   'Recife', 'PE', 18],
+      ['Maria F.', 'São Paulo', 'SP', 47],
+      ['João C.', 'Fortaleza', 'CE', 15],
+      ['Carla M.', 'Belo Horizonte', 'MG', 26],
+      ['Roberto A.', 'Salvador', 'BA', 8],
+      ['Juliana T.', 'Curitiba', 'PR', 33],
+      ['Marcos V.', 'Recife', 'PE', 18],
       ['Patrícia G.', 'Porto Alegre', 'RS', 56],
-      ['Ricardo N.',  'Goiânia', 'GO', 12],
-      ['Beatriz F.',  'Belém', 'PA', 44],
-      ['Thiago I.',   'Campinas', 'SP', 22],
-      ['Larissa J.',  'São Luís', 'MA', 38],
-      ['Felipe K.',   'Natal', 'RN', 5],
-      ['Vanessa R.',  'Maceió', 'AL', 62],
-      ['Bruno Q.',    'Campo Grande', 'MS', 29],
+      ['Ricardo N.', 'Goiânia', 'GO', 12],
+      ['Beatriz F.', 'Belém', 'PA', 44],
+      ['Thiago I.', 'Campinas', 'SP', 22],
+      ['Larissa J.', 'São Luís', 'MA', 38],
+      ['Felipe K.', 'Natal', 'RN', 5],
+      ['Vanessa R.', 'Maceió', 'AL', 62],
+      ['Bruno Q.', 'Campo Grande', 'MS', 29],
     ],
     times: ['agora mesmo', 'há 1 min', 'há 2 min', 'há 5 min', 'há 8 min', 'há 12 min', 'há 18 min', 'há 35 min'],
     productName: 'Higienização de Sofás do Zero',
@@ -274,7 +274,7 @@
             <span>De <s>R$ 97</s> por <strong class="sticky-price">R$ 19,90</strong></span>
           </div>
           <a href="https://pay.kiwify.com.br/AALp7LS" target="_blank" rel="noopener" class="sticky-cta-btn">
-            Comprar agora
+            Compre agora
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
           </a>
         </div>`;
@@ -294,9 +294,9 @@
       const ctaHeight = this.el.offsetHeight;
       const offset = visible ? ctaHeight + 12 + 'px' : '20px';
       const onlineEl = document.getElementById('sp-online');
-      const toastEl  = document.getElementById('sp-toast');
+      const toastEl = document.getElementById('sp-toast');
       if (onlineEl) onlineEl.style.bottom = offset;
-      if (toastEl)  toastEl.style.bottom  = `calc(${offset} + 60px)`;
+      if (toastEl) toastEl.style.bottom = `calc(${offset} + 60px)`;
     },
   };
 
