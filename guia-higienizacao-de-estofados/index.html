@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Diagnóstico — Higienização de Estofados do Zero</title>
+<meta name="description" content="Faça o diagnóstico rápido e descubra o caminho para conseguir seus primeiros clientes de higienização de estofados — sem medo de manchar o sofá." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar__inner">
+      <div class="topbar__row">
+        <button class="back-btn" id="backBtn" type="button" aria-label="Voltar uma etapa">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+          Voltar
+        </button>
+        <span class="brand"><span class="brand__dot"></span>Higienização de Estofados • 2026</span>
+      </div>
+      <div class="progress__meta">
+        <span>Progresso do diagnóstico</span>
+        <span class="progress__pct" id="progressPct">0%</span>
+      </div>
+      <div class="progress__track"><div class="progress__fill" id="progressFill"></div></div>
+    </div>
+  </header>
+
+  <main>
+    <div class="stage" id="stage" aria-live="polite"></div>
+  </main>
+
+  <footer class="footer">
+    <p>© 2026 — Ofício Prático <span class="sb">•</span> Guia de Higienização de Estofados <span class="sb">•</span> Pagamento processado com segurança.<br/>Este diagnóstico não é associado ao Facebook ou Instagram.</p>
+  </footer>
+
+  <script src="js/quiz.js"></script>
+</body>
+</html>
