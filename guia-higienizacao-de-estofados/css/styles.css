@@ -320,6 +320,54 @@ h2.q { font-size: clamp(23px, 5vw, 31px); }
 .insight__body { color: var(--c-muted); font-size: 15.5px; line-height: 1.65; }
 .insight__body b { color: var(--c-text); font-weight: 600; }
 
+/* ---------- imagem nas telas de questão (choice) ---------- */
+.q-img {
+  margin-top: 22px;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  border: 1px solid var(--c-border);
+  aspect-ratio: 16 / 9;
+  background-color: #0a0f18;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+.q-img::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(10,11,16,0.65), transparent 55%);
+  pointer-events: none;
+}
+.q-img__label {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(8, 9, 14, 0.78);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--c-border);
+  color: var(--c-text);
+  font-family: var(--font-display);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 5px 10px 5px 8px;
+  border-radius: var(--r-pill);
+}
+.q-img__label::before {
+  content: '';
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--c-accent);
+  box-shadow: 0 0 8px rgba(34,211,238,0.8);
+  flex-shrink: 0;
+}
+
 /* ---------- mídia / mockup ---------- */
 .media {
   margin-top: 24px;

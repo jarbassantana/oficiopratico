@@ -36,6 +36,8 @@ const QUIZ = [
     stage: "Etapa 1 / Diagnóstico",
     title: "Qual é o seu caso hoje?",
     helper: "Selecione a opção que melhor descreve seu momento para personalizarmos o seu diagnóstico.",
+    image: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=800&h=360&fit=crop&auto=format",
+    imageLabel: "Renda com higienização de estofados",
     options: [
       "Quero começar do zero",
       "Já faço, mas quero cobrar melhor",
@@ -48,6 +50,8 @@ const QUIZ = [
     key: "crenca",
     stage: "Etapa 2 / Percepção de mercado",
     title: "Você acredita que higienizar um sofá é só passar produto e esfregar?",
+    image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&h=360&fit=crop&auto=format",
+    imageLabel: "A técnica certa faz toda a diferença",
     options: ["Sim", "Não", "Não tenho certeza"],
   },
   {
@@ -64,6 +68,8 @@ const QUIZ = [
     stage: "Etapa 3 / O maior obstáculo",
     title: "O que mais te trava hoje?",
     helper: "Sua resposta define o diagnóstico técnico que vamos te entregar no final.",
+    image: "https://images.unsplash.com/photo-1489824904134-891ab64532f1?w=800&h=360&fit=crop&auto=format",
+    imageLabel: "Diagnóstico personalizado para você",
     options: [
       "Medo de manchar o estofado",
       "Não sei o que cobrar",
@@ -209,6 +215,7 @@ const renderers = {
     <div class="step">
       ${stageLabel(s.stage)}
       <h2 class="q">${s.title}</h2>
+      ${s.image ? questionImage(s.image, s.imageLabel) : ""}
       ${s.helper ? `<p class="helper">${s.helper}</p>` : ""}
       <div class="options stagger" role="group">
         ${s.options.map((opt) => optionButton(s.key, opt)).join("")}
@@ -323,6 +330,12 @@ function primaryButton(label) {
   return `<button class="cta" type="button" data-action="next">
     <span class="cta__main">${label} ${ICONS.arrow}</span>
   </button>`;
+}
+
+function questionImage(src, label) {
+  return `<div class="q-img" style="background-image:url('${src}')">
+    ${label ? `<span class="q-img__label">${label}</span>` : ""}
+  </div>`;
 }
 
 function coverBlock(cover) {
